@@ -9,40 +9,28 @@
   <body>
     <div class="container">
       <div class="cabecera">
-        <h1>CRUD de Casa</h1>
-        <img src="./img/logo.png" alt="" width="250px" height="150px">
+        <h1>CRUD DE USUARIO</h1>
+        <img src="./img/user.png" alt="" width="130px" height="120px">
         
         
         
       </div>
-      <div class="botones">
-        <a href="./propietario.html"><button>Propietario</button></a>
-      
-        <a href="./inquilino.html" style="margin-left: 15px;"><button>Inquilino</button></a>
-      </div>
+
       
       <div class="containerForm">
 
         <form id="crudForm">
           <label>
-            Id Casa:
-            <input type="text" id="idCasa" required />
+            Cedula:
+            <input type="text" id="Cedula" required />
           </label>
           <label>
-            Direccion:
-            <input type="text" id="direccion" required />
+            Nombre Completo:
+            <input type="text" id="Nombre" required />
           </label>
           <label>
-            Ciudad:
-            <input type="text" id="ciudad" required />
-          </label>
-          <label>
-            Precio Alquiler:
-            <input type="email" id="precioAlquiler" required />
-          </label>
-          <label>
-            DNI Propietario:
-            <input type="email" id="dniPropietario" required />
+            Contraseña:
+            <input type="text" id="pass" required />
           </label>
           <div class="botonesContainer">
             <button type="button" id="agregar">Agregar</button>
@@ -55,7 +43,7 @@
         <form id="buscarForm">
           <label>
             Buscar:
-            <input type="text" id="idCasaBuscar" required placeholder="ID CASA" />
+            <input type="text" id="buscarCedula" required placeholder="CEDULA" />
           </label>
           <div class="botonesContainer">
             <button type="button" id="buscar">Buscar</button>
@@ -69,11 +57,9 @@
         <table id="tablaRegistros">
           <thead>
             <tr>
-              <th>Id Casa</th>
-              <th>Direccion</th>
-              <th>Ciudad</th>
-              <th>Precio Alquiler</th>
-              <th>DNI Propietario</th>
+              <th>Cedula</th>
+              <th>Nombre Completo</th>
+              <th>Contraseña</th>
             </tr>
           </thead>
           <tbody>

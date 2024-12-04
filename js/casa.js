@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
   limpiarBtn.addEventListener("click", limpiarFormulario);
 
   function inicializarTabla() {
-    fetch("https://api-alquiler-production.up.railway.app/controlador/casa.php", {
+    fetch("https://api-examen/controlador/casa.php", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -106,7 +106,7 @@ window.addEventListener("DOMContentLoaded", () => {
         DNI_propietario: dniPropietarioInput.value,
     };
 
-    fetch("https://api-alquiler-production.up.railway.app/controlador/casa.php", {
+    fetch("https://api-examen/controlador/casa.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
@@ -136,7 +136,7 @@ function editarRegistro() {
     DNI_propietario: dniPropietarioInput.value || null, // Si está vacío, lo dejamos como null
   };
 
-  fetch("https://api-alquiler-production.up.railway.app/controlador/casa.php", {
+  fetch("https://api-examen/controlador/casa.php", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(datos),
@@ -155,7 +155,7 @@ function editarRegistro() {
   function eliminarRegistro() {
     const datos = { id_casa: idCasaInput.value };
 
-    fetch("https://api-alquiler-production.up.railway.app/controlador/casa.php", {
+    fetch("https://api-examen/controlador/casa.php", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datos),
@@ -174,7 +174,7 @@ function editarRegistro() {
   function buscar() {
     const datos = { id_casa: idCasaBuscarInput.value };
 
-    fetch("https://api-alquiler-production.up.railway.app/controlador/casa.php", {
+    fetch("https://api-examen/controlador/casa.php", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datos),

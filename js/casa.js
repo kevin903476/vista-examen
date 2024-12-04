@@ -31,12 +31,13 @@ window.addEventListener("DOMContentLoaded", () => {
   limpiarBtn.addEventListener("click", limpiarFormulario);
 
   function inicializarTabla() {
-    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
+    fetch("http://localhost/api-examen/controlador/usuarios.php", {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "cedula": "01" },
     })
       .then((respuesta) => respuesta.json())
       .then((respuesta) => {
+        console.log(respuesta)
         limpiarTabla();
         llenarTabla(respuesta);
       })
@@ -50,8 +51,8 @@ window.addEventListener("DOMContentLoaded", () => {
       datos.forEach((registro, posicion) => {
         const fila = document.createElement("tr");
         fila.innerHTML = `
-             <td>${registro.Cedula}</td>
-             <td>${registro.Nombre}</td>
+             <td>${registro.cedula}</td>
+             <td>${registro.nombre}</td>
              <td>${registro.pass}</td>
          `;
         fila.addEventListener("click", () =>
@@ -162,13 +163,14 @@ function editarRegistro() {
   function buscar() {
     const datos = { Cedula: buscarcedulaInput.value };
 
-    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
+    fetch("http://localhost/api-examen/controlador/usuarios.php", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datos),
+      headers: { "Content-Type": "application/json", "cedula": "01" },
+      body: ("5MgOy4+rgb0U/cY6XcIz7GhoorwIrwkMNDzGvJhb0+u1KcDx+EflATdks0Ov0kYA"),
     })
       .then((respuesta) => respuesta.json())
       .then((datos) => {
+        console.log("busca")
         limpiarTabla();
         llenarTabla(datos);
       })

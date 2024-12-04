@@ -7,12 +7,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const buscarBtn = document.getElementById("buscar");
   const verTodosBtn = document.getElementById("verTodos");
 
-  const idCasaInput = document.getElementById("idCasa");
-  const direccionInput = document.getElementById("direccion");
-  const ciudadInput = document.getElementById("ciudad");
-  const precioAlquilerInput = document.getElementById("precioAlquiler");
-  const dniPropietarioInput = document.getElementById("dniPropietario");
-  const idCasaBuscarInput = document.getElementById("idCasaBuscar");
+  const CedulaInput = document.getElementById("Cedula");
+  const NombreInput = document.getElementById("Nombre");
+  const passInput = document.getElementById("pass");
+  const buscarcedulaInput = document.getElementById("buscarCedula");
 
   const tablaRegistros = document
     .getElementById("tablaRegistros")
@@ -33,7 +31,7 @@ window.addEventListener("DOMContentLoaded", () => {
   limpiarBtn.addEventListener("click", limpiarFormulario);
 
   function inicializarTabla() {
-    fetch("https://api-examen/controlador/casa.php", {
+    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -52,11 +50,9 @@ window.addEventListener("DOMContentLoaded", () => {
       datos.forEach((registro, posicion) => {
         const fila = document.createElement("tr");
         fila.innerHTML = `
-             <td>${registro.id_casa}</td>
-             <td>${registro.direccion}</td>
-             <td>${registro.ciudad}</td>
-             <td>${registro.precio_alquiler}</td>
-             <td>${registro.DNI_propietario}</td>
+             <td>${registro.Cedula}</td>
+             <td>${registro.Nombre}</td>
+             <td>${registro.pass}</td>
          `;
         fila.addEventListener("click", () =>
           seleccionarRegistro(posicion, datos)
@@ -65,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     } else {
       const fila = document.createElement("tr");
-      fila.innerHTML = `<td colspan="5">No hay datos disponibles</td>`;
+      fila.innerHTML = `<td colspan="3">No hay datos disponibles</td>`;
       tablaRegistros.appendChild(fila);
     }
   }
@@ -75,11 +71,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function seleccionarRegistro(posicion, datos) {
-    idCasaInput.value = datos[posicion].id_casa;
-    direccionInput.value = datos[posicion].direccion;
-    ciudadInput.value = datos[posicion].ciudad;
-    precioAlquilerInput.value = datos[posicion].precio_alquiler;
-    dniPropietarioInput.value = datos[posicion].DNI_propietario;
+    Cedula.value = datos[posicion].Cedula;
+    Nombre.value = datos[posicion].Nombre;
+    pass.value = datos[posicion].pass;
 
     agregarBtn.disabled = true;
     editarBtn.disabled = false;
@@ -87,11 +81,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function limpiarFormulario() {
-    idCasaInput.value = "";
-    direccionInput.value = "";
-    ciudadInput.value = "";
-    precioAlquilerInput.value = "";
-    dniPropietarioInput.value = "";
+    Cedula.value = "";
+    Nombre.value = "";
+    pass.value = "";
 
     agregarBtn.disabled = false;
     editarBtn.disabled = true;
@@ -100,13 +92,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function agregarRegistro() {
     const datos = {
-        direccion: direccionInput.value,
-        ciudad: ciudadInput.value,
-        precio_alquiler: precioAlquilerInput.value,
-        DNI_propietario: dniPropietarioInput.value,
+      Cedula: CedulaInput.value,
+      Nombre: NombreInput.value,
+      pass: passInput.value
     };
 
-    fetch("https://api-examen/controlador/casa.php", {
+    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
@@ -122,21 +113,18 @@ window.addEventListener("DOMContentLoaded", () => {
           }
     })
     .catch((error) => {
-        alert('Hubo un problema al ingresar Casa'); 
+        alert('Hubo un problema al ingresar el usuario'); 
     });
 }
 
 function editarRegistro() {
   const datos = {
-    id_casa: idCasaInput.value,
-    direccion: direccionInput.value,
-    ciudad: ciudadInput.value,
-    precio_alquiler: precioAlquilerInput.value,
-    // Solo agregamos el DNI_propietario si el campo no está vacío
-    DNI_propietario: dniPropietarioInput.value || null, // Si está vacío, lo dejamos como null
+    Cedula: CedulaInput.value,
+    Nombre: NombreInput.value,
+    pass: passInput.value,
   };
 
-  fetch("https://api-examen/controlador/casa.php", {
+  fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(datos),
@@ -148,14 +136,14 @@ function editarRegistro() {
       inicializarTabla();
     })
     .catch((error) => {
-      alert("Error al editar registro:", error);
+      alert("Error al editar el usuario:", error);
     });
 }
 
   function eliminarRegistro() {
-    const datos = { id_casa: idCasaInput.value };
+    const datos = { Cedula: CedulaInput.value };
 
-    fetch("https://api-examen/controlador/casa.php", {
+    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datos),
@@ -167,14 +155,14 @@ function editarRegistro() {
         alert('Se elimino correctamente');
       })
       .catch((error) => {
-        alert.error("Error al eliminar registro:", error);
+        alert.error("Error al eliminar el usuario:", error);
       });
   }
 
   function buscar() {
-    const datos = { id_casa: idCasaBuscarInput.value };
+    const datos = { Cedula: buscarcedulaInput.value };
 
-    fetch("https://api-examen/controlador/casa.php", {
+    fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datos),

@@ -99,18 +99,19 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     fetch("https://localhost/api/api-examen/controlador/usuarios.php", {
+      //aqui irian los datos quemado del usuario?
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
     })
     .then((respuesta) => respuesta.json())
     .then((data) => {
-          // Verificar si hubo un error en el backend
+          
           if (data.error) {
-            alert("Error: " + data.error); // Mostrar el error al usuario
+            alert("Error: " + data.error); 
           } else {
             limpiarFormulario();
-            inicializarTabla(); // Si todo está bien, actualizamos la tabla
+            inicializarTabla(); 
           }
     })
     .catch((error) => {
@@ -165,7 +166,7 @@ function editarRegistro() {
 
     fetch("http://localhost/api-examen/controlador/usuarios.php", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json", "cedula": "01" },
+      headers: { "Content-Type": "application/json", "cedula": "01" , "pass":"1234567890qwertyuiopasdfghjklzxc"},
       body: ("5MgOy4+rgb0U/cY6XcIz7GhoorwIrwkMNDzGvJhb0+u1KcDx+EflATdks0Ov0kYA"),
     })
       .then((respuesta) => respuesta.json())

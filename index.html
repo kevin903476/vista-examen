@@ -9,8 +9,8 @@
   <body>
     <div class="container">
       <div class="cabecera">
-        <h1>CRUD DE USUARIO</h1>
-        <img src="./img/user.png" alt="" width="130px" height="120px">
+        <h1>CRUD DE PRODUCTO</h1>
+        <img src="./img/producto.png" alt="" width="130px" height="120px">
         
         
         
@@ -21,16 +21,16 @@
 
         <form id="crudForm">
           <label>
-            Cedula:
-            <input type="text" id="Cedula" required />
+            Id:
+            <input type="text" id="EliminarporId" disabled />
           </label>
           <label>
-            Nombre Completo:
+            Nombre:
             <input type="text" id="Nombre" required />
           </label>
           <label>
-            Contraseña:
-            <input type="text" id="pass" required />
+            Empresa:
+            <input type="text" id="Empresa" required />
           </label>
           <div class="botonesContainer">
             <button type="button" id="agregar">Agregar</button>
@@ -43,7 +43,7 @@
         <form id="buscarForm">
           <label>
             Buscar:
-            <input type="text" id="buscarCedula" required placeholder="CEDULA" />
+            <input type="text" id="buscarporId" required placeholder="ID" />
           </label>
           <div class="botonesContainer">
             <button type="button" id="buscar">Buscar</button>
@@ -57,9 +57,9 @@
         <table id="tablaRegistros">
           <thead>
             <tr>
-              <th>Cedula</th>
-              <th>Nombre Completo</th>
-              <th>Contraseña</th>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Empresa</th>
             </tr>
           </thead>
           <tbody>
@@ -70,5 +70,5 @@
      
     </div>
   </body>
-  <script src="./js/casa.js"></script>
+  <script src="./js/producto.js"></script>
 </html>
